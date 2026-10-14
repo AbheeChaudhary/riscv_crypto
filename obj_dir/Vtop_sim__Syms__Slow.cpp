@@ -11,7 +11,7 @@ Vtop_sim__Syms::Vtop_sim__Syms(VerilatedContext* contextp, const char* namep, Vt
     , TOP{this, namep}
 {
     // Check resources
-    Verilated::stackCheck(344);
+    Verilated::stackCheck(332);
     // Setup sub module instances
     TOP__ibex_pkg.ctor(this, "ibex_pkg");
     // Configure time unit / time precision

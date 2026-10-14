@@ -13,9 +13,17 @@ module top_sim (
   logic [31:0] instr_rdata;
 
   // --- The Hot-Wire ---
-  assign instr_gnt    = instr_req;
-  assign instr_rvalid = instr_req;
-  assign instr_rdata  = 32'h0000050B; // LDSENS a0, zero
+  assign instr_gnt   = instr_req;
+  assign instr_rdata = 32'h0000050B;  // LDSENS a0, zero
+
+
+  always_ff @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+      instr_rvalid <= 1'b0;
+    end else begin
+      instr_rvalid <= instr_gnt;
+    end
+  end
 
   // --- The Brain ---
   ibex_core #(
@@ -49,7 +57,8 @@ module top_sim (
       .irq_fast_i    (15'b0),
       .irq_nm_i      (1'b0),
       .debug_req_i   (1'b0),
-      .fetch_enable_i(1'b1)
+      .fetch_enable_i(ibex_pkg::IbexMuBiOn)
+
   );
 
 endmodule

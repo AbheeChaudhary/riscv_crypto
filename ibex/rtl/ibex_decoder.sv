@@ -441,6 +441,15 @@ module ibex_decoder #(
         endcase
       end
 
+      // Inside the ALU always_comb unique case — ADD this case:
+      OPCODE_CUSTOM0: begin
+        alu_operator_o     = ALU_LDSENS;
+        alu_op_a_mux_sel_o = OP_A_REG_A;
+        alu_op_b_mux_sel_o = OP_B_IMM;
+        imm_b_mux_sel_o    = IMM_B_I;
+        // NO rf_we_o here — this block doesn't own it
+      end
+
       OPCODE_OP: begin  // Register-Register ALU operation
         rf_ren_a_o = 1'b1;
         rf_ren_b_o = 1'b1;
@@ -521,7 +530,7 @@ module ibex_decoder #(
             },  // packu
             {
               7'b000_0100, 3'b111
-            },  // packh
+            },  // packh/
             // RV32B zbs
             {
               7'b010_0100, 3'b001
@@ -1039,22 +1048,28 @@ module ibex_decoder #(
 
 
       // CUSTOM LDSENS Instruction
-      7'b0001011: begin
-        rf_we_o = 1'b1; // destination register to write enable
+      // CUSTOM LDSENS Instruction
+      OPCODE_CUSTOM0: begin
+        illegal_insn_o     = 1'b0;
+        rf_we_o            = 1'b1;  // destination register to write enable
 
-        alu_op_a_mux_sel_o = OP_A_REG_A; // send rs1 to ALU input A 
-        alu_op_b_mux_sel_o = OP_B_IMM; // send immediate to ALU input B
-        imm_b_mux_sel_o    = IMM_B_I; // use I type immediate formatting 
+        alu_op_a_mux_sel_o = OP_A_REG_A;  // send rs1 to ALU input A 
+        alu_op_b_mux_sel_o = OP_B_IMM;  // send immediate to ALU input B
+        imm_b_mux_sel_o    = IMM_B_I;
+        // use I type immediate formatting
 
-        alu_operator_o = ALU_LDSENS;
+
+        alu_operator_o     = ALU_LDSENS;
+        rf_wdata_sel_o     = RF_WD_EX;
+        data_req_o         = 1'b0;
+        data_we_o          = 1'b0;
+        // ---> YOU MISSED THIS LINE <---
+
       end
-
-
 
       OPCODE_OP: begin  // Register-Register ALU operation
         alu_op_a_mux_sel_o = OP_A_REG_A;
         alu_op_b_mux_sel_o = OP_B_REG_B;
-
         if (instr_alu[26]) begin
           if (RV32B != RV32BNone) begin
             unique case ({

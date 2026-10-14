@@ -22,6 +22,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         VL_IN8(clk,0,0);
         VL_IN8(rst_n,0,0);
         CData/*0:0*/ top_sim__DOT__instr_req;
+        CData/*0:0*/ top_sim__DOT__instr_rvalid;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ic_scr_key_valid_i;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__double_fault_seen_o;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__instr_is_compressed_id;
@@ -82,9 +83,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT____Vcellinp__compressed_decoder_i__id_in_ready_i;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT____Vcellinp__compressed_decoder_i__valid_i;
         CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_d;
-        CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_q;
     };
     struct {
+        CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_q;
         CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_offset_d;
         CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_offset_q;
         CData/*2:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_state_d;
@@ -124,6 +125,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT__unaligned_is_compressed;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT__addr_incr_two;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT____VdfgRegularize_hb4ca33d8_0_3;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT____VdfgRegularize_hb4ca33d8_0_6;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT____VdfgRegularize_hb4ca33d8_0_7;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__illegal_insn_dec;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__ebrk_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__mret_insn_dec;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__dret_insn_dec;
@@ -145,12 +149,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__stall_jump;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__stall_id;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_wdata_sel;
+    };
+    struct {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_we_dec;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_we_raw;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_ren_a_dec;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_ren_b_dec;
-    };
-    struct {
         CData/*6:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__alu_operator;
         CData/*1:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__alu_op_a_mux_sel;
         CData/*1:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__alu_op_a_mux_sel_dec;
@@ -211,12 +215,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__ebreak_into_debug;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__ecall_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__mret_insn;
+    };
+    struct {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__dret_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__wfi_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__ebrk_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__instr_fetch_err;
-    };
-    struct {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__multdiv_sel;
         CData/*1:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__multdiv_imd_val_we;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__adder_op_a_shift1;
@@ -277,12 +281,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__depc_en;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__dscratch0_en;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__dscratch1_en;
+    };
+    struct {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mstack_en;
         CData/*2:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mcountinhibit_d;
         CData/*2:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mcountinhibit_q;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mcountinhibit_we;
-    };
-    struct {
         CData/*7:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__cpuctrlsts_part_d;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__cpuctrlsts_part_we;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__csr_we_int;
@@ -343,12 +347,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*6:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj_word__23__tmp;
         CData/*6:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj__24__Vfuncout;
         CData/*3:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj__24__rlist;
+    };
+    struct {
         CData/*1:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj__24__spimm;
         CData/*6:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj_base__25__Vfuncout;
         CData/*3:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj_base__25__rlist;
         CData/*4:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__26__rlist;
-    };
-    struct {
         CData/*4:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__26__sp_offset;
         CData/*4:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_top_reg__27__Vfuncout;
         CData/*4:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_top_reg__27__rlist;
@@ -409,12 +413,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         IData/*31:0*/ top_sim__DOT__u_core__DOT__instr_rdata_id;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__instr_rdata_alu_id;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__pc_id;
+    };
+    struct {
         IData/*31:0*/ top_sim__DOT__u_core__DOT__rf_wdata_id;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__alu_operand_a_ex;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__alu_operand_b_ex;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__csr_mtval;
-    };
-    struct {
         IData/*31:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__prefetch_addr;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__fetch_rdata;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__instr_decompressed;
@@ -475,12 +479,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__20__Vfuncout;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__20__instr;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__26__Vfuncout;
+    };
+    struct {
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__26__instr;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_push_store_reg__29__Vfuncout;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_push_store_reg__29__instr;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_push_store_reg__31__Vfuncout;
-    };
-    struct {
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_push_store_reg__31__instr;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_addi__33__Vfuncout;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_addi__33__instr;
@@ -541,12 +545,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         VlUnpacked<CData/*5:0*/, 4> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__csr_pmp_cfg_o;
         VlUnpacked<QData/*33:0*/, 4> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__csr_pmp_addr_o;
         VlUnpacked<IData/*31:0*/, 16> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__pmp_addr_rdata;
+    };
+    struct {
         VlUnpacked<CData/*7:0*/, 16> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__pmp_cfg_rdata;
         VlUnpacked<QData/*63:0*/, 32> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mhpmcounter;
         VlUnpacked<IData/*31:0*/, 32> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mhpmevent;
         VlUnpacked<QData/*63:0*/, 2> __VstlTriggered;
-    };
-    struct {
         VlUnpacked<QData/*63:0*/, 1> __VactTriggered;
         VlUnpacked<QData/*63:0*/, 1> __VnbaTriggered;
         VlUnpacked<CData/*0:0*/, 11> __Vm_traceActivity;
