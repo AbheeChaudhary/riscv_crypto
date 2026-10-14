@@ -12,6 +12,8 @@ Vtop_sim::Vtop_sim(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new Vtop_sim__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst_n{vlSymsp->TOP.rst_n}
+    , alert_major_o{vlSymsp->TOP.alert_major_o}
+    , sensor_data_live_o{vlSymsp->TOP.sensor_data_live_o}
     , __PVT__ibex_pkg{vlSymsp->TOP.__PVT__ibex_pkg}
     , rootp{&(vlSymsp->TOP)}
 {
@@ -136,6 +138,6 @@ VL_ATTR_COLD void Vtop_sim::traceBaseModel(VerilatedTraceBaseC* tfp, int levels,
             " use --trace-fst with VerilatedFst object, and --trace-vcd with VerilatedVcd object");
     }
     stfp->spTrace()->addModel(this);
-    stfp->spTrace()->addInitCb(&trace_init, &(vlSymsp->TOP), name(), false, 1048);
+    stfp->spTrace()->addInitCb(&trace_init, &(vlSymsp->TOP), name(), false, 1129);
     Vtop_sim___024root__trace_register(&(vlSymsp->TOP), stfp->spTrace());
 }

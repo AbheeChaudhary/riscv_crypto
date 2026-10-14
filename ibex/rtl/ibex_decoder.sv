@@ -442,15 +442,19 @@ module ibex_decoder #(
         endcase
       end
 
-      // CUSTOM LDSENS: must set rf_we here — this is the block that owns the local rf_we variable
-      // which feeds the final assign: rf_we_o = rf_we & ~illegal_reg_rv32e
+      // CUSTOM SECURITY EXTENSION: LDSENS (funct3 = 000) and VRFSENS (funct3 = 001)
       OPCODE_CUSTOM0: begin
-        alu_operator_o     = ALU_LDSENS;
-        alu_op_a_mux_sel_o = OP_A_REG_A;
-        alu_op_b_mux_sel_o = OP_B_IMM;
-        imm_b_mux_sel_o    = IMM_B_I;
-        rf_we              = 1'b1;  // FIX: enable register file write for rd
-        rf_ren_a_o         = 1'b1;  // FIX: enable rs1 read
+        unique case (instr[14:12])
+          3'b000: begin // LDSENS: sample sensor, encrypt payload to rd
+            rf_we      = 1'b1;  // enable register file write for rd
+            rf_ren_a_o = 1'b0;  // no rs1 needed
+          end
+          3'b001: begin // VRFSENS: verify & decrypt ciphertext in rs1, write to rd
+            rf_we      = 1'b1;  // enable register file write for rd
+            rf_ren_a_o = 1'b1;  // enable rs1 read
+          end
+          default: illegal_insn = 1'b1;
+        endcase
       end
 
       OPCODE_OP: begin  // Register-Register ALU operation
@@ -1050,24 +1054,21 @@ module ibex_decoder #(
       end
 
 
-      // CUSTOM LDSENS Instruction
-      // CUSTOM LDSENS Instruction
+      // CUSTOM SECURITY EXTENSION: LDSENS and VRFSENS ALU configuration
       OPCODE_CUSTOM0: begin
-        illegal_insn_o     = 1'b0;
-        rf_we_o            = 1'b1;  // destination register to write enable
-
-        alu_op_a_mux_sel_o = OP_A_REG_A;  // send rs1 to ALU input A 
-        alu_op_b_mux_sel_o = OP_B_IMM;  // send immediate to ALU input B
+        alu_op_a_mux_sel_o = OP_A_REG_A;
+        alu_op_b_mux_sel_o = OP_B_IMM;
         imm_b_mux_sel_o    = IMM_B_I;
-        // use I type immediate formatting
 
-
-        alu_operator_o     = ALU_LDSENS;
-        rf_wdata_sel_o     = RF_WD_EX;
-        data_req_o         = 1'b0;
-        data_we_o          = 1'b0;
-        // ---> YOU MISSED THIS LINE <---
-
+        unique case (instr_alu[14:12])
+          3'b000: begin
+            alu_operator_o = ALU_LDSENS;
+          end
+          3'b001: begin
+            alu_operator_o = ALU_VRFSENS;
+          end
+          default: ;
+        endcase
       end
 
       OPCODE_OP: begin  // Register-Register ALU operation

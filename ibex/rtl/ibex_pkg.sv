@@ -191,7 +191,8 @@ package ibex_pkg;
     ALU_CRC32_W,
     ALU_CRC32C_W,
     // CUSTOM INSTRUCTION 
-    ALU_LDSENS
+    ALU_LDSENS,
+    ALU_VRFSENS
   } alu_op_e;
 
   typedef enum logic [1:0] {

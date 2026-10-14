@@ -171,6 +171,7 @@ module ibex_core import ibex_pkg::*; #(
   output logic                         alert_minor_o,
   output logic                         alert_major_internal_o,
   output logic                         alert_major_bus_o,
+  input  logic [31:0]                  direct_sensor_data_i,
   output ibex_mubi_t                   core_busy_o
 );
 
@@ -213,6 +214,8 @@ module ibex_core import ibex_pkg::*; #(
   logic        icache_ecc_error;
   logic        pc_mismatch_alert;
   logic        csr_shadow_err;
+  logic        crypto_tamper_alert;
+  logic        crypto_shutdown;
 
   logic        instr_first_cycle_id;
   logic        instr_valid_clear;
@@ -538,15 +541,15 @@ module ibex_core import ibex_pkg::*; #(
     // For secure Ibex fetch_enable_i must be a specific multi-bit pattern to enable instruction
     // fetch
     // SEC_CM: FETCH.CTRL.LC_GATED
-    assign instr_req_gated = instr_req_int & (fetch_enable_i == IbexMuBiOn);
-    assign instr_exec      = fetch_enable_i == IbexMuBiOn;
+    assign instr_req_gated = instr_req_int & (fetch_enable_i == IbexMuBiOn) & ~crypto_shutdown;
+    assign instr_exec      = (fetch_enable_i == IbexMuBiOn) & ~crypto_shutdown;
   end else begin : g_instr_req_gated_non_secure
     // For non secure Ibex only the bottom bit of fetch enable is considered
     logic unused_fetch_enable;
     assign unused_fetch_enable = ^fetch_enable_i[$bits(ibex_mubi_t)-1:1];
 
-    assign instr_req_gated = instr_req_int & fetch_enable_i[0];
-    assign instr_exec      = fetch_enable_i[0];
+    assign instr_req_gated = instr_req_int & fetch_enable_i[0] & ~crypto_shutdown;
+    assign instr_exec      = fetch_enable_i[0] & ~crypto_shutdown;
   end
 
   //////////////
@@ -762,7 +765,10 @@ module ibex_core import ibex_pkg::*; #(
     .branch_target_o  (branch_target_ex),  // to IF
     .branch_decision_o(branch_decision),  // to ID
 
-    .ex_valid_o(ex_valid)
+    .ex_valid_o           (ex_valid),
+    .tamper_alert_o       (crypto_tamper_alert),
+    .shutdown_o           (crypto_shutdown),
+    .direct_sensor_data_i (direct_sensor_data_i)
   );
 
   /////////////////////
@@ -972,7 +978,7 @@ module ibex_core import ibex_pkg::*; #(
   assign alert_minor_o = icache_ecc_error;
 
   // Major internal alert - core is unrecoverable
-  assign alert_major_internal_o = rf_ecc_err_comb | pc_mismatch_alert | csr_shadow_err;
+  assign alert_major_internal_o = rf_ecc_err_comb | pc_mismatch_alert | csr_shadow_err | crypto_tamper_alert;
   // Major bus alert
   assign alert_major_bus_o = lsu_load_resp_intg_err | lsu_store_resp_intg_err | instr_intg_err;
 

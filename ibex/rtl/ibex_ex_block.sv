@@ -50,7 +50,12 @@ module ibex_ex_block #(
     output logic [31:0] branch_target_o,        // to IF
     output logic        branch_decision_o,      // to ID
 
-    output logic ex_valid_o  // EX has valid output
+    output logic ex_valid_o, // EX has valid output
+    output logic tamper_alert_o,
+    output logic shutdown_o,
+
+    // Direct hardware sensor ingress
+    input  logic [31:0] direct_sensor_data_i
 );
 
 
@@ -61,7 +66,14 @@ module ibex_ex_block #(
   //
 
   logic        crypto_en_ldsens;
+  logic        crypto_en_vrfsens;
   logic [31:0] crypto_secure_payload;
+  logic [31:0] crypto_decrypted_data;
+  logic        crypto_tamper_alert;
+  logic        crypto_shutdown;
+
+  assign tamper_alert_o = crypto_tamper_alert;
+  assign shutdown_o     = crypto_shutdown;
 
 
 
@@ -112,9 +124,10 @@ module ibex_ex_block #(
 
   assign alu_imd_val_q = '{imd_val_q_i[0][31:0], imd_val_q_i[1][31:0]};
 
-  // OVERRIDE: Prioritize the Crypto Engine output if LDSENS is active
-  assign result_ex_o = crypto_en_ldsens ? crypto_secure_payload : 
-                       (multdiv_sel     ? multdiv_result : alu_result);
+  // OVERRIDE: Prioritize the Crypto Engine output if LDSENS or VRFSENS is active
+  assign result_ex_o = crypto_en_ldsens  ? crypto_secure_payload : 
+                       crypto_en_vrfsens ? crypto_decrypted_data :
+                       (multdiv_sel      ? multdiv_result : alu_result);
   // branch handling
   assign branch_decision_o = alu_cmp_result;
 
@@ -136,12 +149,14 @@ module ibex_ex_block #(
     assign branch_target_o = alu_adder_result_ex_o;
   end
 
-  // Assert trigger for LDSENS 
-
+  // Assert trigger for LDSENS and VRFSENS
   always_comb begin
-    crypto_en_ldsens = 1'b0;
+    crypto_en_ldsens  = 1'b0;
+    crypto_en_vrfsens = 1'b0;
     if (alu_operator_i == ALU_LDSENS) begin
       crypto_en_ldsens = 1'b1;
+    end else if (alu_operator_i == ALU_VRFSENS) begin
+      crypto_en_vrfsens = 1'b1;
     end
   end
 
@@ -170,15 +185,18 @@ module ibex_ex_block #(
       .is_equal_result_o  (alu_is_equal_result)
   );
 
-  // instantiation of crypto ALU module
-
+  // instantiation of crypto engine module
   ibex_crypto_engine u_crypto_engine (
       .clk_i               (clk_i),
       .rst_ni              (rst_ni),
       .en_ldsens_i         (crypto_en_ldsens),
-      .direct_sensor_data_i(32'h000000FF),          // tied to dummy
-      .secure_payload_o    (crypto_secure_payload)
-
+      .direct_sensor_data_i(direct_sensor_data_i),
+      .en_vrfsens_i        (crypto_en_vrfsens),
+      .cipher_token_i      (alu_operand_a_i),       // rs1 token from ID stage
+      .secure_payload_o    (crypto_secure_payload),
+      .decrypted_data_o    (crypto_decrypted_data),
+      .tamper_alert_o      (crypto_tamper_alert),
+      .shutdown_o          (crypto_shutdown)
   );
 
   ////////////////

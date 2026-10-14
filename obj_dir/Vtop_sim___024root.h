@@ -21,8 +21,10 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
     struct {
         VL_IN8(clk,0,0);
         VL_IN8(rst_n,0,0);
+        VL_OUT8(alert_major_o,0,0);
         CData/*0:0*/ top_sim__DOT__instr_req;
         CData/*0:0*/ top_sim__DOT__instr_rvalid;
+        CData/*0:0*/ top_sim__DOT__rf_we_wb;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ic_scr_key_valid_i;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__double_fault_seen_o;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__instr_is_compressed_id;
@@ -32,6 +34,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__illegal_c_insn_id;
         CData/*1:0*/ top_sim__DOT__u_core__DOT__imd_val_we_ex;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__icache_inval;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__crypto_shutdown;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__instr_first_cycle_id;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__instr_valid_clear;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__pc_set;
@@ -80,11 +83,11 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__illegal_c_insn;
         CData/*1:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__instr_gets_expanded;
         CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__irq_vec;
+    };
+    struct {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT____Vcellinp__compressed_decoder_i__id_in_ready_i;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT____Vcellinp__compressed_decoder_i__valid_i;
         CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_d;
-    };
-    struct {
         CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_q;
         CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_offset_d;
         CData/*4:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_offset_q;
@@ -127,7 +130,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT____VdfgRegularize_hb4ca33d8_0_3;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT____VdfgRegularize_hb4ca33d8_0_6;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT____VdfgRegularize_hb4ca33d8_0_7;
-        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__illegal_insn_dec;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__ebrk_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__mret_insn_dec;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__dret_insn_dec;
@@ -147,11 +149,10 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__stall_multdiv;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__stall_branch;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__stall_jump;
-        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__stall_id;
-        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_wdata_sel;
     };
     struct {
-        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_we_dec;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__stall_id;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_wdata_sel;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_we_raw;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_ren_a_dec;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_ren_b_dec;
@@ -185,6 +186,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*6:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__decoder_i__DOT__opcode;
         CData/*6:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__decoder_i__DOT__opcode_alu;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__decoder_i__DOT____VdfgExtracted_h376d6acc__0;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__decoder_i__DOT____VdfgExtracted_h5634867c__0;
         CData/*3:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__ctrl_fsm_cs;
         CData/*3:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__ctrl_fsm_ns;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__nmi_mode_q;
@@ -213,14 +215,16 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__enter_debug_mode_prio_d;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__enter_debug_mode_prio_q;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__ebreak_into_debug;
-        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__ecall_insn;
-        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__mret_insn;
     };
     struct {
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__ecall_insn;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__mret_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__dret_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__wfi_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__ebrk_insn;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__id_stage_i__DOT__controller_i__DOT__instr_fetch_err;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__crypto_en_vrfsens;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__crypto_tamper_alert;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__multdiv_sel;
         CData/*1:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__multdiv_imd_val_we;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__adder_op_a_shift1;
@@ -230,6 +234,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__cmp_signed;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__cmp_result;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__shift_left;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__u_crypto_engine__DOT__auth_match;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__u_crypto_engine__DOT__is_tampered;
+        CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__u_crypto_engine__DOT__shutdown_latched_q;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__gen_multdiv_fast__DOT__multdiv_i__DOT__sign_a;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__gen_multdiv_fast__DOT__multdiv_i__DOT__sign_b;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__gen_multdiv_fast__DOT__multdiv_i__DOT__mult_valid;
@@ -274,6 +281,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mscratch_en;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mepc_en;
         CData/*6:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mcause_d;
+    };
+    struct {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mcause_en;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mtval_en;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mtvec_en;
@@ -281,8 +290,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__depc_en;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__dscratch0_en;
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__dscratch1_en;
-    };
-    struct {
         CData/*0:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mstack_en;
         CData/*2:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mcountinhibit_d;
         CData/*2:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mcountinhibit_q;
@@ -340,6 +347,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*4:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_top_reg__21__rlist;
         CData/*4:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_init__22__Vfuncout;
         CData/*3:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_init__22__instr_rlist;
+    };
+    struct {
         CData/*4:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_rlist_init__22__rlist;
         CData/*4:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj_word__23__Vfuncout;
         CData/*3:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj_word__23__rlist;
@@ -347,8 +356,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         CData/*6:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj_word__23__tmp;
         CData/*6:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj__24__Vfuncout;
         CData/*3:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj__24__rlist;
-    };
-    struct {
         CData/*1:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj__24__spimm;
         CData/*6:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj_base__25__Vfuncout;
         CData/*3:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_stack_adj_base__25__rlist;
@@ -406,15 +413,50 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         SData/*11:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_addi__17__imm_signed;
         SData/*11:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_push_store_reg__31__neg_offset;
         SData/*11:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_push_store_reg__31__neg_offset_signed;
-        SData/*11:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_addi__33__imm;
-        SData/*11:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_addi__33__imm_signed;
-        IData/*31:0*/ top_sim__DOT__u_core__DOT__rf_rdata_a_ecc_i;
-        IData/*31:0*/ top_sim__DOT__u_core__DOT__rf_rdata_b_ecc_i;
-        IData/*31:0*/ top_sim__DOT__u_core__DOT__instr_rdata_id;
-        IData/*31:0*/ top_sim__DOT__u_core__DOT__instr_rdata_alu_id;
-        IData/*31:0*/ top_sim__DOT__u_core__DOT__pc_id;
     };
     struct {
+        SData/*11:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_addi__33__imm;
+        SData/*11:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_sp_addi__33__imm_signed;
+        VL_OUT(sensor_data_live_o,31,0);
+        IData/*31:0*/ top_sim__DOT__instr_rdata;
+        IData/*31:0*/ top_sim__DOT__fetch_addr_q;
+        IData/*31:0*/ top_sim__DOT__rf_rdata_a;
+        IData/*31:0*/ top_sim__DOT__rf_rdata_b;
+        IData/*31:0*/ top_sim__DOT__rf_wdata_wb;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__we_a_dec;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__1__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__2__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__3__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__4__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__5__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__6__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__7__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__8__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__9__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__10__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__11__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__12__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__13__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__14__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__15__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__16__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__17__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__18__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__19__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__20__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__21__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__22__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__23__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__24__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__25__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__26__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__27__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__28__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__29__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__30__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_regfile__DOT__g_rf_flops__BRA__31__KET____DOT__rf_reg_q;
+        IData/*31:0*/ top_sim__DOT__u_core__DOT__instr_rdata_id;
+        IData/*31:0*/ top_sim__DOT__u_core__DOT__pc_id;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__rf_wdata_id;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__alu_operand_a_ex;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__alu_operand_b_ex;
@@ -433,9 +475,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         IData/*31:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT__rdata;
         IData/*30:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT__instr_addr_d;
         IData/*30:0*/ top_sim__DOT__u_core__DOT__if_stage_i__DOT__gen_prefetch_buffer__DOT__prefetch_buffer_i__DOT__fifo_i__DOT__instr_addr_q;
+        IData/*31:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__crypto_decrypted_data;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_result;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__operand_a_rev;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__shift_operand;
+    };
+    struct {
         IData/*31:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__shift_result;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__shift_result_rev;
         IData/*31:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__bwlogic_result;
@@ -479,8 +524,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__20__Vfuncout;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__20__instr;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__26__Vfuncout;
-    };
-    struct {
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_pop_load_reg__26__instr;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_push_store_reg__29__Vfuncout;
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_push_store_reg__29__instr;
@@ -502,6 +545,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         IData/*31:0*/ __Vfunc_top_sim__DOT__u_core__DOT__if_stage_i__DOT__compressed_decoder_i__DOT__cm_mv_reg__43__instr;
         IData/*31:0*/ __VactIterCount;
         QData/*32:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__multdiv_alu_operand_b;
+    };
+    struct {
         QData/*32:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__multdiv_alu_operand_a;
         QData/*33:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_adder_result_ext;
         QData/*32:0*/ top_sim__DOT__u_core__DOT__ex_block_i__DOT__alu_i__DOT__shift_result_ext_signed;
@@ -515,6 +560,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         QData/*63:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__minstret_counter_i__DOT__counter_load;
         QData/*63:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__minstret_counter_i__DOT__counter_d;
         QData/*63:0*/ top_sim__DOT__u_core__DOT__cs_registers_i__DOT__minstret_counter_i__DOT__counter_q;
+        VlUnpacked<IData/*31:0*/, 32> top_sim__DOT__u_regfile__DOT__rf_reg;
         VlUnpacked<IData/*21:0*/, 2> top_sim__DOT__u_core__DOT__ic_tag_rdata_i;
         VlUnpacked<QData/*63:0*/, 2> top_sim__DOT__u_core__DOT__ic_data_rdata_i;
         VlUnpacked<QData/*33:0*/, 2> top_sim__DOT__u_core__DOT__imd_val_d_ex;
@@ -545,8 +591,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtop_sim___024root final {
         VlUnpacked<CData/*5:0*/, 4> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__csr_pmp_cfg_o;
         VlUnpacked<QData/*33:0*/, 4> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__csr_pmp_addr_o;
         VlUnpacked<IData/*31:0*/, 16> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__pmp_addr_rdata;
-    };
-    struct {
         VlUnpacked<CData/*7:0*/, 16> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__pmp_cfg_rdata;
         VlUnpacked<QData/*63:0*/, 32> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mhpmcounter;
         VlUnpacked<IData/*31:0*/, 32> top_sim__DOT__u_core__DOT__cs_registers_i__DOT__mhpmevent;
