@@ -1,3 +1,4 @@
+
 // Copyright lowRISC contributors.
 // Copyright 2018 ETH Zurich and University of Bologna, see also CREDITS.md.
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
@@ -441,13 +442,15 @@ module ibex_decoder #(
         endcase
       end
 
-      // Inside the ALU always_comb unique case — ADD this case:
+      // CUSTOM LDSENS: must set rf_we here — this is the block that owns the local rf_we variable
+      // which feeds the final assign: rf_we_o = rf_we & ~illegal_reg_rv32e
       OPCODE_CUSTOM0: begin
         alu_operator_o     = ALU_LDSENS;
         alu_op_a_mux_sel_o = OP_A_REG_A;
         alu_op_b_mux_sel_o = OP_B_IMM;
         imm_b_mux_sel_o    = IMM_B_I;
-        // NO rf_we_o here — this block doesn't own it
+        rf_we              = 1'b1;  // FIX: enable register file write for rd
+        rf_ren_a_o         = 1'b1;  // FIX: enable rs1 read
       end
 
       OPCODE_OP: begin  // Register-Register ALU operation

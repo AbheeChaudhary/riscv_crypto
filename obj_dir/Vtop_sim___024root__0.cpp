@@ -4790,13 +4790,13 @@ void Vtop_sim___024root___nba_comb__TOP__0(Vtop_sim___024root* vlSelf) {
                                                 & (vlSelfRef.top_sim__DOT__u_core__DOT__instr_rdata_alu_id 
                                                    >> 0x0000000cU)))))) {
                             if (VL_UNLIKELY((vlSymsp->_vm_contextp__->assertOn()))) {
-                                VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:1320: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '3'h%x'\n",0,
+                                VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:1323: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '3'h%x'\n",0,
                                              64,VL_TIME_UNITED_Q(1),
                                              -12,vlSymsp->name(),
                                              3,(7U 
                                                 & (vlSelfRef.top_sim__DOT__u_core__DOT__instr_rdata_alu_id 
                                                    >> 0x0cU)));
-                                VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 1320, "");
+                                VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 1323, "");
                             }
                         }
                     }
@@ -5414,7 +5414,7 @@ void Vtop_sim___024root___nba_comb__TOP__0(Vtop_sim___024root* vlSelf) {
                                                    >> 0x00000014U)))))) {
                                     if (VL_UNLIKELY((
                                                      vlSymsp->_vm_contextp__->assertOn()))) {
-                                        VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:698: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '12'h%x'\n",0,
+                                        VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:701: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '12'h%x'\n",0,
                                                      64,
                                                      VL_TIME_UNITED_Q(1),
                                                      -12,
@@ -5422,7 +5422,7 @@ void Vtop_sim___024root___nba_comb__TOP__0(Vtop_sim___024root* vlSelf) {
                                                      12,
                                                      (vlSelfRef.top_sim__DOT__u_core__DOT__instr_rdata_id 
                                                       >> 0x14U));
-                                        VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 698, "");
+                                        VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 701, "");
                                     }
                                 }
                             }
@@ -5488,7 +5488,7 @@ void Vtop_sim___024root___nba_comb__TOP__0(Vtop_sim___024root* vlSelf) {
                                                       >> 0x0000000cU))))))) {
                                     if (VL_UNLIKELY((
                                                      vlSymsp->_vm_contextp__->assertOn()))) {
-                                        VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:733: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '2'h%x'\n",0,
+                                        VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:736: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '2'h%x'\n",0,
                                                      64,
                                                      VL_TIME_UNITED_Q(1),
                                                      -12,
@@ -5497,7 +5497,7 @@ void Vtop_sim___024root___nba_comb__TOP__0(Vtop_sim___024root* vlSelf) {
                                                      (3U 
                                                       & (vlSelfRef.top_sim__DOT__u_core__DOT__instr_rdata_id 
                                                          >> 0x0cU)));
-                                        VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 733, "");
+                                        VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 736, "");
                                     }
                                 }
                             }
@@ -5713,12 +5713,12 @@ void Vtop_sim___024root___nba_comb__TOP__0(Vtop_sim___024root* vlSelf) {
                                                 >> 0x0cU))))))))) {
                     if (vlSelfRef.top_sim__DOT__u_core__DOT__id_stage_i__DOT__decoder_i__DOT____VdfgExtracted_h376d6acc__0) {
                         if (VL_UNLIKELY((vlSymsp->_vm_contextp__->assertOn()))) {
-                            VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:303: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '2'h%x'\n",0,
+                            VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:304: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '2'h%x'\n",0,
                                          64,VL_TIME_UNITED_Q(1),
                                          -12,vlSymsp->name(),
                                          2,(3U & (vlSelfRef.top_sim__DOT__u_core__DOT__instr_rdata_id 
                                                   >> 0x0cU)));
-                            VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 303, "");
+                            VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 304, "");
                         }
                     }
                 }
@@ -5860,13 +5860,13 @@ void Vtop_sim___024root___nba_comb__TOP__0(Vtop_sim___024root* vlSelf) {
                                                 & (vlSelfRef.top_sim__DOT__u_core__DOT__instr_rdata_id 
                                                    >> 0x0000000cU)))))) {
                             if (VL_UNLIKELY((vlSymsp->_vm_contextp__->assertOn()))) {
-                                VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:670: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '3'h%x'\n",0,
+                                VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:673: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '3'h%x'\n",0,
                                              64,VL_TIME_UNITED_Q(1),
                                              -12,vlSymsp->name(),
                                              3,(7U 
                                                 & (vlSelfRef.top_sim__DOT__u_core__DOT__instr_rdata_id 
                                                    >> 0x0cU)));
-                                VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 670, "");
+                                VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 673, "");
                             }
                         }
                     }
@@ -5882,6 +5882,8 @@ void Vtop_sim___024root___nba_comb__TOP__0(Vtop_sim___024root* vlSelf) {
                 vlSelfRef.top_sim__DOT__u_core__DOT__id_stage_i__DOT__alu_op_a_mux_sel_dec = 0U;
                 vlSelfRef.top_sim__DOT__u_core__DOT__id_stage_i__DOT__alu_op_b_mux_sel_dec = 1U;
                 vlSelfRef.top_sim__DOT__u_core__DOT__id_stage_i__DOT__imm_b_mux_sel_dec = 0U;
+                vlSelfRef.top_sim__DOT__u_core__DOT__id_stage_i__DOT__decoder_i__DOT__rf_we = 1U;
+                vlSelfRef.top_sim__DOT__u_core__DOT__id_stage_i__DOT__rf_ren_a_dec = 1U;
             } else {
                 vlSelfRef.top_sim__DOT__u_core__DOT__id_stage_i__DOT__decoder_i__DOT__illegal_insn = 1U;
             }
@@ -5914,12 +5916,12 @@ void Vtop_sim___024root___nba_comb__TOP__0(Vtop_sim___024root* vlSelf) {
                                                         >> 0x0cU))))))))) {
                 if (vlSelfRef.top_sim__DOT__u_core__DOT__id_stage_i__DOT__decoder_i__DOT____VdfgExtracted_h376d6acc__0) {
                     if (VL_UNLIKELY((vlSymsp->_vm_contextp__->assertOn()))) {
-                        VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:320: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '2'h%x'\n",0,
+                        VL_WRITEF_NX("[%0t] %%Error: ibex_decoder.sv:321: Assertion failed in %Ntop_sim.u_core.id_stage_i.decoder_i: unique case, but multiple matches found for '2'h%x'\n",0,
                                      64,VL_TIME_UNITED_Q(1),
                                      -12,vlSymsp->name(),
                                      2,(3U & (vlSelfRef.top_sim__DOT__u_core__DOT__instr_rdata_id 
                                               >> 0x0cU)));
-                        VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 320, "");
+                        VL_STOP_MT("ibex/rtl/ibex_decoder.sv", 321, "");
                     }
                 }
             }
